@@ -37,7 +37,7 @@ test('should add an expense', () => {
     type: 'ADD_EXPENSE',
     expense,
   };
-  const state = expenseReducer(expenses, action);
+  const state = expensesReducer(expenses, action);
   expect(state).toEqual([...expenses, expense])
 })
 
@@ -50,7 +50,7 @@ test('should adit an expense', () => {
       amount
     }
   };
-  const state = expenseReducer(expenses, action);
+  const state = expensesReducer(expenses, action);
   expect(state[1].amount).toBe(amount);
 })
 
@@ -63,6 +63,15 @@ test('should edit an expense id not found', () => {
       amount
     }
   };
-  const state = expenseReducer(expenses, action);
+  const state = expensesReducer(expenses, action);
   expect(state).toEqual(expenses);
+})
+
+test('should set expenses', () => {
+  const action = {
+    type: 'SET_EXPENSES',
+    expenses: [expenses[1]]
+  };
+  const state = expensesReducer(expenses, action);
+  expect(state).toEqual([expenses[1]]);
 })
